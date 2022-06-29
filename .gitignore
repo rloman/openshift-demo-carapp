@@ -1,0 +1,15 @@
+/build/
+target
+bin
+*.class
+.metadata/
+*.project
+*.settings
+*.classpath
+*.idea
+*.iml
+*.log
+
+# depending on the project setup you might ignore => 
+## application.properties
+
