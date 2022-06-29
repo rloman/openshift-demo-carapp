@@ -21,7 +21,7 @@ test:
 
 teardown:
 	@killall kubectl
-	@$(kubectl) delete deployment person
+	@$(kubectl) delete deployment openshift_carapp
 	@$(kubectl) delete deployment postgres
 	@$(kubectl) delete pvc postgres-pv-claim
 	@$(kubectl) delete pv postgres-pv-volume
