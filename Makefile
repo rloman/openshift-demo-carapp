@@ -2,6 +2,9 @@
 kubectl := minikube kubectl --
 
 deploy:	api
+	@$(kubectl) apply -f mysecret.yaml
+	@$(kubectl) apply -f postgres-pv.yaml
+	@$(kubectl) apply -f postgres-deployment.yaml
 	@$(kubectl) apply -f openshift_carapp-app-deployment.yaml
 
 api:
@@ -18,4 +21,12 @@ test:
 
 teardown:
 	@killall kubectl
-	@$(kubectl) delete deployment openshift_carapp
+	@$(kubectl) delete deployment person
+	@$(kubectl) delete deployment postgres
+	@$(kubectl) delete pvc postgres-pv-claim
+	@$(kubectl) delete pv postgres-pv-volume
+	@$(kubectl) delete secret mysecret
+	@docker container exec -it minikube docker volume rm postgres-data
+
+delete_volume:
+	echo Warning!!! If you invoke this the postgres-DB will be deleted !!! 'docker container exec -it minikube docker volume rm postgres-data'
