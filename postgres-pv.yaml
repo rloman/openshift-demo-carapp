@@ -5,7 +5,7 @@ metadata:
   labels:
     type: local
 spec:
-  storageClassName: manual
+  storageClassName: gp2
   capacity:
     storage: 20Gi
   accessModes:
@@ -19,7 +19,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: postgres-pv-claim
 spec:
-  storageClassName: manual
+  storageClassName: gp2
   accessModes:
     - ReadWriteOnce
   resources:
