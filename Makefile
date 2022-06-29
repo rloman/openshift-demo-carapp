@@ -2,9 +2,6 @@
 kubectl := minikube kubectl --
 
 deploy:	api
-	@$(kubectl) apply -f mysecret.yaml
-	@$(kubectl) apply -f h2-pv.yaml
-	@$(kubectl) apply -f h2-deployment.yaml
 	@$(kubectl) apply -f openshift_carapp-app-deployment.yaml
 
 api:
@@ -21,12 +18,4 @@ test:
 
 teardown:
 	@killall kubectl
-	@$(kubectl) delete deployment person
-	@$(kubectl) delete deployment h2
-	@$(kubectl) delete pvc h2-pv-claim
-	@$(kubectl) delete pv h2-pv-volume
-	@$(kubectl) delete secret mysecret
-	@docker container exec -it minikube docker volume rm h2-data
-
-delete_volume:
-	echo Warning!!! If you invoke this the h2-DB will be deleted !!! 'docker container exec -it minikube docker volume rm h2-data'
+	@$(kubectl) delete deployment openshift_carapp
